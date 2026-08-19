@@ -1,0 +1,1330 @@
+﻿-- To create/DROP/alter new database
+Create database july2026
+
+use JULY2026
+
+drop database july2026
+
+Alter database newjuly2026 
+modify name = July2026
+-- To display all database name from a Server
+select name
+from sys.databases
+
+-- Different SQL languages
+--1. DDL (Data definition language)
+-- Create, alter, drop, truncate
+
+--2. DML (Data Manipulation language)
+-- Insert, update, delete
+
+--3. DQL (Data Query language)
+-- Select
+
+-- 4. TCL (Transaction control language)
+-- Commit, rollback, savepoint
+
+Select 4+4 as addition
+
+Select 'Suresh' + ' ' + 'Patel'
+
+-- To create a New Table
+
+Create table <nameTable>
+( Colname1 <datatype>,
+colname2 <datatype>,
+colname3 <datatype>
+)
+
+Create table employee
+( EID INT,
+Ename Varchar (20),
+Eage INT ,
+ESalary Money)
+
+Select * from employee
+
+-- Insert method 1
+Insert into employee values
+(101,'Suresh',20,20000)
+
+-- Insert method 2
+Insert into employee (EID,Ename,Eage) values
+(102,'Jayesh',22)
+
+-- Insert method 3
+Insert inTo employee Values
+(103,'Mahesh',21,20000),
+(104,'Naresh',24,22000),
+(105,'Kamesh',25,23000)
+
+Insert employee (EID,Ename,Esalary) values
+(106,'Ramesh',26000)
+
+Insert into employee (Ename,EID,Eage,ESalary) values
+('Raj',107,35,26000)
+Select * from employee
+Select EID,Ename,ESalary from employee
+
+-- Update method 1
+Update <tablename>
+Set Colname = <newvalue>
+where <colname> 
+
+update employee
+Set ESalary = 30000
+Where EID = 101
+
+-- Update method 2
+update employee
+Set Eage = 18
+Where EAge is NOT NULL
+
+Insert into employee (EId,Ename) values
+(108,'Mukesh')
+
+-- Upadate method 3
+update employee
+SET ESalary = 25000
+
+-- Delete method 1
+Delete from employee
+Where Ename = 'Jayesh'
+
+-- Delete method 2
+Delete from employee
+where Eage is NULL
+
+-- Delete method 3
+Delete from employee
+
+-- Delete, Drop, Truncate
+Delete from employee
+Drop table employee
+Truncate table employee
+
+Select * from newemployee
+
+-- rename table name
+--sp_rename 'oldtablename', 'newtablename'
+sp_rename 'employee', 'newemployee'
+
+--sp_rename 'tablename.col', 'newcolname'
+sp_rename 'newemployee.Ename', 'EFullName'
+
+select name
+from sys.tables
+
+Select GETDATE()
+
+select SYSTEM_USER
+
+Select * from newemployee
+
+drop table newemployee
+
+create table employee
+(EID INT,
+Ename Varchar(255),
+Eage INT,
+Esalary money,
+DOJ date)
+
+Select * from employee
+insert into employee values
+(102,'Mahesh',21,21000,'2011-02-19'),
+(103,'Naresh',22,22000,'2012-03-19'),
+(104,'Ramesh',23,23000,'2013-04-19'),
+(105,'Jayesh',24,24000,'2014-05-19')
+
+--Logical operator (Between, AND, OR, IN)
+
+select * from employee
+where Esalary between 21000 AND 24000
+
+Select * from employee
+Where Eage = 21 AND Esalary = 21000 OR  DOJ > '2013-01-01'
+
+Select * from employee
+Where Eage = 21 OR (Esalary = 21000 AND  DOJ > '2013-01-01')
+
+Select * from employee
+Where Esalary = 21000 OR Eage = 21
+
+Select * from employee
+Where Eage = 21 
+
+Select * from employee
+where EID IN (1,2,5,8)
+
+update employee
+Set Esalary = 30000 AND DEPARTMENT = 'IT'
+where EID IN (1,4)
+
+
+update employee
+Set Esalary = 40000
+where Eage = 21 AND DOJ > '2010-01-01'
+
+UPDATE 
+SET 
+WHERE
+
+Delete
+from 
+where 
+Select * from employee
+
+-- Comparison operators >,>=,<=,=, <>, !=
+-- Fetch all employees whose salary is greathan than 25000
+
+select * from employee
+where Esalary >= 30000 AND Esalary <= 40000
+
+Select * from employee
+where Esalary <> 30000
+
+-- Like operator (look for the matching string)
+
+Select * from employee
+where ename like 's%'
+
+
+Select * from employee
+where ename like 'h%'
+
+Select * from employee
+where ename like '%@gmail.com'
+
+-- Arithemtic operator *,/,+,-
+
+Select top 2 percent * from employee
+
+Select EID, Ename,Esalary as OldSalary, (Esalary *1.10) as NewSalary 
+from employee
+
+Select PID, Pname, (Price * Quantity) as Total Value from Product
+
+-- Autoincrement - Increment (INT)
+
+create table emp
+(EID INT Identity,
+Ename Varchar(20),
+Department varchar(20))
+
+insert into emp values 
+('Ramesh','Data Analytics')
+select * from emp
+
+SET Identity_insert emp ON
+
+select * from employee
+
+Alter table employee
+Add EmailID varchar(20)
+
+Alter table employee
+alter column EmailID varchar(30)
+
+Alter table employee
+drop column EmailID
+
+sp_help employee
+
+-- Aggregate function: Count(Int+varchar),Max (Int+varchar),Min (Int+varchar),Sum (INT),Avg(INT)
+select Max(Ename) from employee
+select Min(Ename) from employee
+select Avg(Ename) from employee
+
+select Count(Ename) from employee
+
+select SUM(Ename) from employee
+
+select Max(Esalary) as Highest,
+Min(Esalary) as Lowest,
+Avg(Esalary) as Average,
+Sum(Esalary) as TotalSalary
+from employee
+
+Select * from EMP
+
+alter table emp
+add Esalary money
+
+
+insert into emp values
+('Kamesh','AI'),
+('Naresh','Cloud')
+
+-- Fetch all department max salary, but it should be greter than 20000 
+
+select top 3 esalary 
+from emp
+
+--group by Department
+--having Max(Esalary) > 20000
+Order by Esalary DESC
+
+Select * from emp
+
+select Department, Max(ESalary)
+from emp
+Where city = ''
+group by Department
+
+Select Pname,city, SUM(Price*Quantity)
+from product
+group by city
+having SUM(Price*Quantity) >100000
+
+Select department,SUM(Esalary) as TotalEmployee
+from emp
+group by Department
+
+
+-- Constraints
+-- NOT Null (Ensure the values is always present, but it allows duplicate)
+--Unique (Ensure the values are unique, but allows NULL)
+--Check (to check specific condition)
+-- default (by deafult) 
+-- PK (Unique + Not NUll) 
+-- FK (referential data interity, establih relationship between two tables)
+
+create table emp1
+(EID INT,
+Ename Varchar(20),
+City varchar(20) Default 'Vadodara')
+
+drop table emp1
+insert into emp1(EID,Ename) values
+(2,'Jayesh')
+
+update emp1
+set Eage = 17
+Where EID = 3
+Select * from emp1
+
+
+-- Assginment
+1. Find out how many employees are in each department.
+-- Display department with employees greathan than 10
+Select Department, count(EID)
+from Employee
+group by Department
+having count(EID) > 10
+ORder by Count(EID) DESC
+
+2. Calculate the average salary for employees in each department.
+
+Select department, AVG(Esalary)
+from employee
+group by department
+
+3. Find the total quantity sold for each distinct product.
+-- Product (PID,Productname, price, quantity, city, region)
+Select Distinct productname, count(Quantity)
+from product
+group by productname
+
+4. Maximum Price of a Product in Each Region
+Select Region,Productname, MAX(Price)
+from Product
+group by Region
+
+5. Minimum and Maximum Salary per Department
+Select Department,Min(Esalary), Max(Esalary)
+from employee
+group by Department
+
+6. Total Sales Value per Region
+-- Product (PID,Productname, price, quantity, city, region)
+Select region, SUM(Price*Quantity) as Totalsales
+from product
+group by region
+having SUM(Price*Quantity) > 100000
+Order by 2 DESC
+
+
+7. Find the departments with an average salary greater than 20,000. 
+
+Select department,AVG(Esalary)
+From employee
+group by department
+having AVG(Esalary) > 20000
+
+8. List the cities where the average employee age is greater than 20. 
+Select cities, AVG(Eage)
+from emp
+group by cities
+having AVG(Eage) >20
+
+9. Find the departments with more than 5 employees. 
+Select department, count(EID)
+from emp
+group by department
+having count(EID) > 5
+
+10. List the cities where the total salary of all employees exceeds 30,000. 
+Select cities, SUM(Esalary)
+from emp
+group by cities
+having SUM(Esalary) > 30000
+
+11. Find the departments where the average age of employees is between 20 and 25.
+Select department, AVG(Eage)
+from emp
+group by department
+having AVG(Eage) between 20 AND 25
+
+Select department, AVG(Eage)
+from emp
+Where AVG(Eage) between 20 AND 25
+group by Department
+
+Select 
+from
+order by department, Ename DESC
+
+alter table emp
+add Eage INT
+
+Alter table emp
+add constraint Checking_age CHECK (Eage > 18)
+
+Alter table emp1
+drop constraint CK__emp1__Eage__32E0915F
+
+create table emp1
+( EID INT,
+Ename varchar(20),
+Eage INT Check (Eage>18)
+)
+
+
+Alter table emp
+alter column EID INT Unique
+
+-- Primary key
+drop table emp
+ALter table emp
+drop constraint  
+
+Create table emp
+(EID INT Primary key,
+Ename varchar(20))
+
+Insert into emp values
+(4,'Suresh'),
+(1,'Mahesh'),
+(5,'Ramesh'),
+(2,'Mukesh')
+select * from emp
+
+Insert into emp (EID, Ename,Eage, Department) values
+(1,'Jayesh',21,'QA')
+select * from emp
+drop table emp
+
+create table dept
+(DID INT PRIMARY KEY,
+Dname varchar(20))
+
+INSERT INTO DEPT VALUES
+(101,'IT'),
+(102,'AI'),
+(103,'QA')
+
+Create table emp
+(EID INT,
+Ename varchar(20),
+DID INT FOREIGN KEY REFERENCES DEPT (DID)
+ON delete cascade ON update cascade)
+
+INSERT INTO EMP VALUES
+(1,'Jayesh',101),
+(2,'Suresh',102)
+
+select * from emp
+
+delete from dept
+where DID = 101
+
+Update Dept
+set DID =105
+Where Dname = 'AI'
+
+select * from dept
+
+-- PF & FK for Emp-Salary, Train-booking, Customer-Orders
+ALter table EMP
+ALter column EMP INT UNIQUE, NOT NULL
+
+Alter table EMP
+Add constraint PK_EID PRIMARY KEY EMP (EID)
+
+Alter table Dept
+Add constraint FK_DID Foreign key DID 
+references EMP (EID)
+
+-- Student records
+Create table Student_records
+(SID INT,
+Sname Varchar(20),
+SubjectName varchar(20),
+Grade CHAR(1)
+Primary key (SID,SubjectName))
+
+Insert into Student_records values
+(2,'Ramesh','SQL101','B')
+Select * from Student_records
+Select * from Student_assignment
+Create table Student_assignment
+(AssignmentID INT,
+AssignmentDate Date,
+Status varchar(20) default 'In-progress',
+SID INT,
+SubjectName varchar(20),
+Foreign key (SID,SubjectName)
+references Student_records (SID,SubjectName))
+
+Insert into Student_assignment values
+(202,'2026-07-20','Completed',2,'SQL101')
+
+--SET Operators (Union, Union All, Intersect, Except)
+-- Number of columns must be same
+-- Order of the column
+-- Datatype must be same
+
+-- Banking system, differenct accounts
+create table customer_saving
+(CustomerID INT,
+CustomerName varchar(20),
+CAddress varchar(20))
+Insert into customer_saving values
+(101,'Suresh','Atladra'),
+(102,'Ramesh','Akota'),
+(103,'Mahesh','Manjalpur')
+
+create table customer_loan
+(CustomerID INT,
+CustomerName varchar(20),
+CAddress varchar(20))
+
+Insert into customer_loan values
+(101,'Suresh','Atladra'),
+(102,'Jayesh','Padra'),
+(103,'Mahesh','Manjalpur'),
+(104,'Naresh','Gotri')
+
+-- To send Diwali greetings to all customers
+-- UNION - (remove duplicates)
+
+Select CustomerID, CustomerName from customer_saving
+UNION
+Select CustomerID, CustomerName from customer_loan
+
+-- To see how many accounts are open
+-- Union ALL (includes duplicates)
+
+Select CustomerID, CustomerName from customer_saving
+UNION ALL
+Select CustomerID, CustomerName from customer_loan
+
+-- Premium customer
+-- Intersect (common records)
+
+Select CustomerID, CustomerName from customer_saving
+Intersect
+Select CustomerID, CustomerName from customer_loan
+
+-- To check how many customer is having saving account but not loan account
+
+Select CustomerID, CustomerName from customer_saving
+Except
+Select CustomerID, CustomerName from customer_loan
+
+Create table Bank_SBI
+(CustomerID INT, 
+CName varchar(20))
+Insert into Bank_SBI values
+(101,'Suresh')
+
+Create table Bank_HDFC
+(CustomerID INT, 
+CName varchar(20),
+location varchar(20))
+Insert into Bank_HDFC values
+(101,'Suresh','Akota')
+
+Select * from Bank_SBI
+Union
+Select * from Bank_HDFC
+
+-- JOINS, 2 broad categories
+-- To fetch data from more than one tables
+-- Pre-requisite - It MUST have atleast ONE Common or Matching column with same data type
+-- Column name & data size can be different
+-- ANSI - lastest join tech. in SQL
+-- Keyword 'ON'
+-- Inner, Left, Right,Left Exl., Right Exl., Full join, Self join
+-- Non-ANSI - traditional joins
+-- Keyword - 'Where'
+-- Equi join - =
+-- Non equi join - >,>=,<,<=,<>, !=
+
+
+Select * 
+From A
+FULL outer join B
+ON  A.EID = B.EID
+where A.EID IS NULL OR
+B.EID IS NULL
+
+-- Inner join - Intersecting value
+-- Left join - Inner + left
+-- Left Exl. - Left
+-- Right join - Inner + right
+-- Right Exl. - Right
+-- Full join - Inner + left + right
+-- Full Exl - Left + Right
+
+Create table Student
+(SID INT,
+Sname Varchar(20),
+City varchar(20),
+CID INT)
+Insert into student values
+(1, 'Suresh','Vadodara',101),
+(2,'Mahesh','Anand',102),
+(3,'Ramesh','Bharuch',103),
+(4,'Jayesh','Vadodara',104)
+
+Create table Course
+(CID INT,
+Cname varchar(20),
+Cfee Decimal(6,2))
+Insert into course values
+(101,'AI Engineering',9999),
+(102,'Full Stack Eng',8999),
+(103,'Cloud Engineering',9999),
+(105,'QA',7999),
+(106,'Data Analytics',7999)
+
+Select S.SID,S.CID,S.Sname,C.Cname
+from Student S 
+Inner Join Course C
+ON S.CID = C.CID
+
+Select *
+from Student
+Right JOIN Course
+ON Student.CID = Course.CID
+
+Select *
+from Student 
+Left Join Course
+ON Student.CID = Course.CID
+where Course.CID IS NULL
+
+Select *
+from Student 
+Full Join Course
+ON Student.CID = Course.CID
+
+Select * from Student
+Select * from course
+
+-- Customer (CID,Cname,location)
+-- Orders (OrderID, CID, ProductName,Price)
+
+-- 1. Fetch employee with their department name.
+-- 2. Display All employee will their department name.
+-- 3. Fetch employee with their Manager name.
+-- 4. Fetch employee name, department name & manager name.
+-- 5. Display employee name, department name, manager name & Project name
+-- 6. Fetch employee name and Project name they are working on
+-- 7. Fetch employee who is NOT working on any Project
+-- 8. Fetch employee who is working on more than 2 Projects
+-- 9. Fetch employee who is working on Cloud migration Project
+-- 10. Display employee working on Cloud & Data migration both
+-- 11. Fetch All employee working in AI department
+-- 12. Fetch all employee working under manager Alice
+
+-- Self join (Joining a table with itself)
+drop table emp
+
+create table emp
+(EID INT,
+Ename varchar(20),
+Designation varchar(20),
+MID INT)
+Insert into emp values
+(102,'Mahesh', 'IT Manager',101),
+(103,'Ramesh','Team lead',102),
+(104,'Jayesh','Software Developer',103)
+
+select * from emp
+
+Select e1.eid,e1.ename,e1.Designation, e2.ename as manager
+From emp e1
+Left Join emp e2
+ON e1.MID = e2.EID
+
+-- NON ANSI JOIN (WHERE)
+-- Equi (=), Non Equi (<,<=,>=,<>)
+
+Create table bank1
+(BID INT,
+Bname varchar(20))
+Insert into bank1 values
+(10,'SBI'),
+(20,'HDFC'),
+(30,'ICICI')
+
+Create table bank2
+(BID INT,
+Bname varchar(20))
+Insert into bank2 values
+(10,'SBI'),
+(20,'HDFC'),
+(40,'AXIS'),
+(50,'Kotak')
+
+select * from bank1
+Select * from bank2
+
+Select * from bank1,bank2 
+WHERE bank1.BID = bank2.BID
+
+Select * from bank1,bank2 
+WHERE bank1.BID <> bank2.BID
+
+-- VIEWS (Virtual tables, they don't occupy disk space)
+-- Simple View (1 table) & Complex View (2 or more tables)
+Select * from employee
+-- 1. Simplicity of having minimum column in a table
+-- 2. Masking of data for security reason
+-- 3. fast response time
+Create view VW_Emp_with_DOJ AS
+Select EID, Ename,DOJ 
+from employee
+
+Select * from VW_Emp_with_DOJ
+select * from employee
+
+update VW_Emp_with_DOJ
+SET DOJ = '2020-10-10'
+Where EID = 105
+
+drop view VW_Emp_with_DOJ
+
+Delete from VW_Emp_with_DOJ
+where EID = 105
+Insert into VW_Emp_with_DOJ (EID,Ename,DOJ,Esalary) values
+(106,'BOB','2026-07-31',50000)
+
+
+Alter View VW_StudetName_CoureName 
+AS
+Select SID,Sname,Course.CID,Student.Cname
+from Student 
+Join Course
+ON Student.CID = Course.CID
+
+Select * from VW_StudetName_CoureName
+sp_help VW_StudetName_CoureName
+
+Select * from Student
+Select * from Course
+
+Alter table Student
+add Cname varchar(20)
+-- Limitation of Complex VIEW 
+-- Where updation of more than 1 table are involved
+
+Update VW_StudetName_CoureName
+SET Cname = 'GENAI Engineering'
+Where CID = 101
+
+Select * from VW_StudetName_CoureName
+where Cname = 'GENAI Engineering'
+
+-- Index & types
+
+-- Create, Alter, drop, sp_helpindex
+-- Clustered - 1 per table (It deals with physical order of the table) 
+-- Primary key in a table, clustered index is created automatically
+-- Non-Clustered - It can be multiple - 999 
+-- Unique - duplicates values
+-- Composite - combines more than 1 column
+
+select * from employee
+delete from employee
+where Ename = 'BOB'
+
+Create Clustered Index CIX_EmpID
+on employee (EID)
+
+Create UNIQUE Index CIX_EmpUniqueAge
+on employee (Eage)
+drop index IX_Esalary on employee
+
+sp_helpindex 'employee'
+drop index CIX_Empage on employee
+insert into employee (EID,Ename) values
+(105,'BOB'),
+(103,'')
+
+sp_helpindex 'employee'
+Alter table employee
+alter column EID INT NOT NULL
+ALter table employee
+add constraint PK_EID Primary key (EID)
+
+Select * from employee with (Index(CIX_Empage))
+where  eage = 21
+
+alter index IX_Esalary
+on Employee (Esalary)
+
+create UNique index IX_DOJ
+on employee (DOJ)
+
+create NONClustered index IX_Firstname_Lastname
+on employee (Firstname,Lastname)
+
+Select EID, Firstname,Lastname, Esalary from employee
+
+insert into employee (EID, Ename, DOJ) values
+(106,'Bob','2010-01-01')
+
+-- Subquery (Nested query) - it consists of multiple subqueries
+-- Select
+-- (Outer query + Inner query)
+-- Scalar (Single values =,>=,<=)
+-- Multi row subquery (logical operators)
+-- Corelated subquery (Inner Query + Outer query)
+
+Select top 2 EID,Ename,Esalary from employee
+order by Esalary DESC
+
+-- To find highest salary
+Select EID,Ename,Esalary from employee 
+where Esalary = 
+(Select Max(ESalary) from employee)
+
+-- TO find 2nd highest salary
+Select  EID,Ename,Esalary from employee 
+where Esalary = 
+(Select Max(ESalary) from employee
+where Esalary <
+(Select Max(ESalary) from employee))
+
+Select Top 1 EID,Ename,Esalary from employee 
+where Esalary <
+(Select Max(ESalary) from employee)
+
+
+Select  EID,Ename,Esalary from employee 
+where Esalary = 
+(Select Max(ESalary) from employee
+where Esalary <
+(Select Max(ESalary) from employee
+where Esalary <
+(Select Max(ESalary) from employee))
+)
+
+-- Find employees having salary greater than the average salary
+Select EID, Ename, Esalary from employee
+Where Esalary >
+(Select avg(Esalary) from employee)
+
+-- Find employees having average salary greater than their OWN department salary.
+Select e1.EID, e1.Ename, e1.Esalary from employee e1
+Where e1.Esalary >
+(Select avg(e2.Esalary) from employee e2
+where e2.DID = e1.DID)
+
+Select ename from employee 
+Where DeptID IN 
+(Select DID from Department where city ='Vadodara')
+
+Money vs Decimal(6,2)
+Phone varchar (10) check (phone NOT LIKE '%[^0-9]%' 
+AND Len(Phone) = 10)	
+
+-- Subquery Assignment
+Product (PID, Pname, Quantity, City, SalesUnit)
+--1. Find all products that have a Quantity greater than the average quantity of all 
+products. 
+
+Select * from Product Where Quantity  > 
+(Select Avg(Quanity) from Product)
+
+--2. Display the ProductName of products sold in the same city as 'Laptop'. 
+Select Productname from Product 
+Where City =
+(Select city from product where Pname = 'laptop')
+--3. Find the details of the products with the maximum Quantity. 
+Select * from product
+Where Quantity =
+(Select Max(Quantiy) from product)
+
+--4. List products whose salesUnit is higher than the salesUnit of ProductID 5. 
+Select Select * from product
+Where SalesUnit >
+(Select salesUnit from product WHere PID = 5)
+
+--5. Find products that have a lower Quantity than the minimum Quantity found in 
+'Vadodara'. 
+
+Select * from products
+Where Quantity <
+(Select MIN(Quantity) from product where City = 'vadodara')
+--6. Display products whose salesUnit is greater than the average salesUnit of products 
+in 'Mumbai'. 
+
+Select * from products
+Where SalesUnit >
+(Select Avg(SalesUNit) 
+from product 
+where city = 'Mumbai')
+
+--7. Find the product name with the lowest salesUnit. 
+Select Productname from product
+where salesUnit = 
+(Select Min(SalesUnit) from Product)
+
+--8. List all products sold in cities that have more than 50 total Quantity across all their 
+products. 
+Select * from product
+Where city IN
+(Select city from product 
+group by city 
+having SUM(Quantity) > 50)
+
+--9. Show products whose Quantity is exactly equal to the salesUnit of 'Smartphone'. 
+Select * from product
+where Quantity =
+(Select SalesUnit from product
+where pname = 'Smartphone'
+
+--10. Find the city which has the product with the highest salesUnit. 
+Select city from product
+where =
+(Select Max(SalesUNit) from product)
+
+--11.Find all products sold in cities where at least one product has a Quantity of zero. 
+Select * from Product
+Where IN
+(Select city from product where Quantity = 0)
+
+--12.. List products whose salesUnit is greater than the salesUnit of all products in 'Surat'. 
+Select * from Product
+Where SalesUnit > ALL
+(Select SalesUNit from Product where City = 'Surat')
+--13.Find products that belong to cities where the average salesUnit is greater than 10. 
+Select * from product
+Where City IN
+(Select city from product
+group by city
+havning Avg(SalesUnit) > 10)
+
+--14. Display products that have a Quantity greater than any product's Quantity in 'Pune'. 
+Select * from product
+Where Quantiy > ANY 
+(Select Quantity from product where city = 'Pune')
+
+--15.Find all products whose ProductName is the same as any product sold in 
+'Ahmedabad'.
+Select * from product
+where Pname = ANY 
+(select pname from product where city = 'Ahmedabad')
+
+--16. Select products where the Quantity is greater than the average Quantity of their own 
+city.
+Select * from product
+Where Quanity >
+Select
+
+--17. Find cities where the total salesUnit is higher than the total salesUnit of 'Vadodara'. 
+Select city From product group by city
+ having SUM(SalesUnit) >
+(Select SUM(SalesUNiot) from product where city = 'Vadodara'
+
+--18. List products that are sold in the city that has the maximum variety (count) of 
+products. 
+Select * from product
+Where City = 
+(Select Top 1 city from product
+group by city
+Order by Count(*) DESC
+)
+
+--19. Find the second highest Quantity from the Product table using a subquery. 
+
+
+--20. Display the ProductName and a calculated column showing the difference between 
+its Quantity and the global average Quantity.
+Select Pname, quantity -
+(Select AVG(Quantity) As Difference from product)
+
+-- TCL (Transaction Control Language) ACID 
+-- Commit (Permanently saved), Rollback (Undo transaction), Savepoint (checkpoint for the saved data)
+101 ALice - 5000
+102 Bob + 5000
+
+Begin Transaction
+Update emp1
+Set Esalay = Esalary - 5000
+where EID = 101
+
+Update emp1
+Set Esalay = Esalary + 5000
+where EID = 102
+Commit
+
+Begin Transaction
+Delete from employee
+Where EID =101
+Rollback
+
+Select * from employee
+
+Begin transaction;
+Insert into employee values
+(106,'Bob',20,2000,'2012-02-01','bob@gmail.com'),
+(107,'MIke',21,2000,'2012-02-01','mike@gmail.com')
+Save transaction today
+
+Insert into employee values
+(108,'John',21,2000,'2012-02-01','john@gmail.com')
+Rollback transaction today
+
+ 
+
+Insert into employee(EID, Ename) values
+(109,'Jayesh')
+
+Rollback checkpoint
+
+
+
+BEGIN TRANSACTION;
+BEGIN TRY
+    -- Step 1: Deduct 1 item from stock
+    UPDATE Products 
+    SET StockQuantity = StockQuantity - 1 
+    WHERE ProductID = 101;
+
+    -- Step 2: Deduct 50,000 from Suresh's wallet
+    UPDATE CustomerWallet 
+    SET Balance = Balance - 50000
+    WHERE CustomerID = 1;
+
+    -- Step 3: Insert into Orders
+    INSERT INTO Orders (CustomerID, ProductID, Amount, OrderStatus) 
+    VALUES (1, 101, 50000, 'CONFIRMED');
+
+    -- If all steps succeeded, commit changes permanently
+    COMMIT TRANSACTION;
+    PRINT 'Order Placed Successfully!';
+END TRY
+
+BEGIN CATCH
+    -- If any error occurs in TRY block, undo everything!
+    ROLLBACK TRANSACTION;
+    PRINT 'Transaction Failed! All changes rolled back.';
+END CATCH;
+
+Table -> Employee (EID, Ename , Department, City, Salary, Bonus, DOJ) 
+
+--Question 1: 
+--Write an UPDATE statement to give a 10% salary raise to all employees in the 'IT' 
+department  
+Update employee
+set salary = salary *1.10 
+Where department = 'IT'
+
+--Question 2:  
+--Retrieve the EmpName, Department, and Salary of all employees whose current salary 
+falls between ₹50,000 and ₹90,000 (inclusive) 
+Select EmpName, Deaprtment, Salary 
+from employee
+Where Salary between 50000 AND 90000
+
+--Question 3: 
+--Calculate the total salary expenditure and average bonus for each Department, 
+considering only employees located in 'Vadodara', or 'Ahmedabad'.  Sort the output by total 
+salary expenditure in descending order. 
+
+Select department, SUM(Salary), AVG(bonus)
+from employee
+Where city IN ('Vadodara', 'Ahmedabad')
+group by department
+ORder by SUM(Salary) DESC
+
+
+--Question 4: 
+--Find all departments that employ more than 2 employees and have an average bonus of at 
+least ₹5,000. Display the Department, total employee count, and average bonus. 
+
+Select Department, Count(EID), Avg(bonus) as bonusaverage
+from employee
+group by department
+having count(EID) > 2 AND Avg(bonus) >= 5000
+
+--Question 5: 
+--Write a DELETE query to remove all records of employees from the 'Sales' or 'Marketing' 
+departments who have a Salary less than ₹35,000. 
+Delete from employee
+where department IN ('Sales','Marketing') AND Salary <35000
+
+--Question 6: 
+--Find the highest salary, lowest salary, and average salary across the entire company,  
+Select MAX(Salary), MIN(Salary), AVG(Salary) 
+from employee
+
+--Question 7:  
+--Display the EmpName, Department, and HireDate of all employees who were hired before 
+31-03-2025, ordered by HireDate from earliest to latest. 
+Select EMpname, department, DOJ
+from employee
+where DOJ < '31-03-2025'
+ORder by DOJ 
+
+--Question 8:  
+--Write an UPDATE statement to add ₹3,000 to the Bonus of any employee whose current 
+salary is below 20000 
+Update employee
+Set bonus = bonus + 3000
+Where salary < 20000
+
+--Question 9:  
+--Write a query to count the total number of employees in each City
+
+Select Count(EID), city
+from employee
+group by city
+
+-- Stored Procedure
+-- Performance, security, maintiance, Reduce network traffice
+-- Types of SP
+-- Simple SP, SP with input parameter, SP with output parameter
+
+Alter procedure sp_Emp_Details_byEID
+@EmployeeID INT 
+AS
+Begin
+Select EID, EName, DOJ from employee where EID = @EmployeeID
+End
+
+sp_Emp_Details_byEID 103
+
+sp_EmpJoining_Details
+Exec sp_EmpJoining_Details
+Execute sp_EmpJoining_Details
+
+drop proc sp_EmpJoining_Details
+
+Create table emp3
+(EID INT, 
+Ename varchar(255), 
+Esalary Money, 
+department varchar(255),
+gender char(1))
+Insert into emp3 values 
+(1,'Suresh',20000,'IT','M'),
+(2,'Mahesh',30000,'QA','F'),
+(3,'Jayesh',35000,'DA','M'),
+(4,'Ramesh',40000,'IT','M'),
+(5,'Naresh',42000,'QA','F')
+
+Alter Proc sp_EmpDetails_byDeptName
+@DepartmentName varchar(10),
+@Gender char(1)
+As
+Begin
+	Select EID, Ename, Esalary from emp3 
+	where department = @DepartmentName AND Gender = @Gender
+End
+
+sp_EmpDetails_byDeptName 'QA', 'F'
+
+Create proc sp_Insert_EmpDetails
+@Ename varchar(255), 
+@Esalary money
+As
+Begin
+	Insert into emp3(Ename, Esalary) values
+	(@Ename,@Esalary)
+ENd
+sp_Insert_EmpDetails 'Alice', 50000
+
+Create procedure sp_UpdateEmp_Salary
+@Esalary money,
+@EID INT
+As
+Begin
+	Update emp3
+	Set Esalary = @Esalary
+	Where EID = @EID
+End
+
+sp_UpdateEmp_Salary @EID = 1, @Esalary = 50000 
+select * from emp3
+
+Create proc sp_Delete_EMPbyEID
+@EID INT
+As
+Begin
+	Delete from emp3
+	Where EID = @EID
+End 
+sp_Delete_EMPbyEID 1
+
+-- Important SP
+
+sp_help sp_EmpDetails_byDeptName
+sp_helptext sp_EmpDetails_byDeptName
+sp_depends sp_EmpDetails_byDeptName
+
+Create proc sp_EmpCount_byDeptName
+@departmentName varchar(20),
+@EmpCount INT OUT
+AS
+Begin
+	Select @EmpCount= count(EID) from emp3 
+	where department = @departmentName
+End
+
+Declare @EmpTotal INT 
+Execute sp_EmpCount_byDeptName 'QA' , @EmpTotal Out
+Select 'The total employee in department is ' + CAST(@EmpTotal as varchar) as DepartmentCount
+
+-- Transaction
+-- Sender AID, Receiver AID, Amount
+-- Exception handling using TRY & CATCH
+
+Create procedure sp_Update_BalanceTransaction_Emp3
+@SenderAID INT,
+@ReceiverAID INT,
+@Amount Money
+AS
+Begin
+Begin TRY
+Begin Transaction
+Update emp3
+set balance = balance - 5000
+Where SenderAID = 101
+
+Update emp3
+set balance = balance + 5000
+Where ReceiverAID = 102
+
+Commit transaction;
+Print 'Transaction was successfull'
+
+END TRY
+
+Begin CATCH
+	if @@TranCount > 0,
+	Rollback transaction
+END CATCH
+
+END
+
+sp_Update_BalanceTransaction_Emp3 101,105,5000
+
+-- To find max salary from employee table
+
+ALter proc sp_HighestSalary_Emp
+@Highest Money Out,
+@Lowest Money Out,
+@Average  Money Out
+As
+Begin
+	Select @Highest = Max(ESalary),  @Lowest= Min(ESalary), @Average = Avg(Esalary) from employee
+End
+
+Declare @HighestSalary Money, @LowestSalary Money, @AverageSalary Money
+Execute  sp_HighestSalary_Emp @HighestSalary Out, @LowestSalary Out, @AverageSalary Out
+Select 'The Maximum Salary is '@HighestSalary 
+Print @LowestSalary  
+Print @AverageSalary
+
+-- Find total amount of shopping done by Customer 
+Create proc sp_CustomerID_ShoppingAMount
+@CustomerID INT
+As
+Begin
+	Select CID, Cname, SUM(price * quantity) as TotalAmount from Customer
+	where CustomerID = @Customer
+End
+
+sp_CustomerID_ShoppingAMount 1
+-- To update Stock quantity of a Product
+Create proc sp_Update_StockQuantity_ProcductID
+@ProductID INT,
+@Quantity INT
+As
+Begin
+	Update product
+	set Stock = Stock - @quantity
+	Where ProductID = @ProductID
+End
+
+sp_Update_StockQuantity_ProcductID 101, 4
+
+-- Find employees working on a particular Project
+Create proc sp_Projectdetails_Employees
+@Pname varchar(20)
+As
+Begin
+	Select EID, Ename from employee
+	where Pname = @Pname
+End
+
+sp_Projectdetails_Employees 'Cloud migration'
+
+-- Find top 3 Cities with highest sales
+Create proc sp_HighestSales_byCity
+As
+Begin
+	Select Top 3 @City,SUM(Price* Quantity) as TotalSales from Product
+	group by @City
+	order by @City desc
+End
+
+-- Trigger (Event-driven)
+-- DML trigger (Insert, update, delete)
+-- DDL trigger (Create, alter,drop)
+-- LogON trigger (Database)
+
+-- Auditing,Compliance, security
+
+Alter trigger tr_Insert_Employee_Info
+ON Employee
+For delete
+As
+Begin
+	print 'A new Employee is successfully added to the table EMPLOYEE'
+End
+
+insert into employee(EID,Ename) values (111,'John')
+
+drop trigger tr_Insert_Employee_Info
+Disable trigger tr_Insert_Employee_Info on employee
+Enable trigger tr_Insert_Employee_Info on employee
+
+Disable trigger ALL on employee
+
+
+Create trigger tr_Update_Employee_Info
+ON Employee
+For delete
+As
+Begin
+	Select * from Inserted,
+	Select * from deleted
+End
